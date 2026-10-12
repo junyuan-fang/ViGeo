@@ -35,6 +35,15 @@ from .loss_util import (
     ray_loss,
 )
 from .utils import pose_encoding_to_extri, extri_to_pose_encoding
+from .riemannian import geodesic_camera_loss, relative_motion_loss, curve_accel_loss
+
+
+# Riemannian camera-trajectory losses (see src/loss/riemannian.py, docs/riemannian/README.md).
+TRAJECTORY_LOSSES = {
+    'geodesic_camera_loss': geodesic_camera_loss,
+    'relative_motion_loss': relative_motion_loss,
+    'curve_accel_loss': curve_accel_loss,
+}
 
 
 # Datasets with reliable normal / geometry supervision.
@@ -325,6 +334,17 @@ class VideoDepthLoss(nn.Module):
                     extri_to_pose_encoding(pose_pred_i_norm_scaled),
                     extri_to_pose_encoding(pose_gt_i_norm),
                 )
+
+            elif loss_name in TRAJECTORY_LOSSES:
+                # Same scale alignment as camera_loss; poses stay as SE(3) matrices.
+                pose_pred_i_norm_scaled = pose_pred_i_norm.clone()
+                pose_pred_i_norm_scaled[:, :3, 3] *= scale_i
+
+                with torch.amp.autocast('cuda', dtype=torch.float32):
+                    sample_losses[loss_name] = TRAJECTORY_LOSSES[loss_name](
+                        pose_pred_i_norm_scaled.float(),
+                        pose_gt_i_norm.float(),
+                    )
 
             elif loss_name == 'scale_loss':
                 if scale_pred_i is None or data_name_i not in METRIC_DATASETS:

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riemannian Curve Losses</title>
+<style>
+  :root {
+    --bg: #ffffff; --panel: #f6f7f9; --text: #111827; --muted: #6b7280; --border: #e5e7eb;
+    --gt: #6b7280; --pred: #2563eb; --o0: #2563eb; --o1: #d97706; --o2: #059669; --prior: #dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1115; --panel: #181b21; --text: #e5e7eb; --muted: #9ca3af; --border: #2a2f38;
+      --gt: #9ca3af; --pred: #60a5fa; --o0: #60a5fa; --o1: #fbbf24; --o2: #34d399; --prior: #f87171;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1115; --panel: #181b21; --text: #e5e7eb; --muted: #9ca3af; --border: #2a2f38;
+    --gt: #9ca3af; --pred: #60a5fa; --o0: #60a5fa; --o1: #fbbf24; --o2: #34d399; --prior: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.6 -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  svg { width: 100%; height: auto; display: block; }
+  label { display: block; margin: 10px 0 2px; font-weight: 600; }
+  label span { font-weight: 400; color: var(--muted); float: right; font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .seg button, .btn { border: 1px solid var(--border); background: var(--bg); color: var(--text);
+    border-radius: 6px; padding: 4px 10px; cursor: pointer; font: inherit; }
+  .seg button[aria-pressed=true] { border-color: var(--pred); color: var(--pred); font-weight: 600; }
+  .metric { display: grid; grid-template-columns: 112px 1fr 56px; align-items: center; gap: 8px; margin: 6px 0; }
+  .bar { height: 10px; border-radius: 5px; background: var(--border); overflow: hidden; }
+  .bar > div { height: 100%; border-radius: 5px; transition: width .15s; }
+  .val { text-align: right; font-variant-numeric: tabular-nums; }
+  .legend { display: flex; gap: 14px; color: var(--muted); font-size: 12px; margin-top: 6px; flex-wrap: wrap; }
+  .sw { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 4px; }
+  .notes { margin-top: 16px; }
+  .notes p { margin: 6px 0; }
+  code { background: var(--border); padding: 0 4px; border-radius: 3px; font-size: 12.5px; }
+  .hint { color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>相机轨迹的 0 / 1 / 2 阶曲线损失</h1>
+  <p class="sub">SE(2) 平面玩具，公式与 <code>src/loss/riemannian.py</code> 的 SE(3) 版本同构。拖动滑块制造误差，观察每一阶损失的反应。</p>
+
+  <div class="grid">
+    <div class="card">
+      <svg id="plot" viewBox="0 0 640 380" role="img" aria-label="GT 与预测轨迹"></svg>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--gt)"></i>GT</span>
+        <span><i class="sw" style="background:var(--pred)"></i>预测</span>
+        <span>短线 = 相机朝向；连线按 clip 内的帧顺序</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <label>整体偏移（gauge）<span id="v-offset"></span></label>
+      <input id="offset" type="range" min="0" max="1" step="0.01" value="0">
+      <label>每帧抖动<span id="v-jitter"></span></label>
+      <input id="jitter" type="range" min="0" max="1" step="0.01" value="0.3">
+      <label>速度漂移<span id="v-drift"></span></label>
+      <input id="drift" type="range" min="0" max="1" step="0.01" value="0">
+      <label>训练采样方式</label>
+      <div class="seg" id="mode">
+        <button data-m="0" aria-pressed="true">stride 1</button>
+        <button data-m="1" aria-pressed="false">stride 1–8 + 反向</button>
+        <button data-m="2" aria-pressed="false">打乱</button>
+      </div>
+      <div style="margin-top:10px"><button class="btn" id="reseed">重新采样</button></div>
+
+      <h3 style="margin:18px 0 4px;font-size:14px">匹配式损失（pred vs GT）</h3>
+      <div id="metrics"></div>
+      <h3 style="margin:14px 0 4px;font-size:14px">对照：GT-free 平滑先验 ‖a‖</h3>
+      <div id="priors"></div>
+      <p class="hint">柱长按对数刻度显示，便于在同一条刻度上比较。</p>
+    </div>
+  </div>
+
+  <div class="card notes">
+    <p><b>建议的操作顺序</b></p>
+    <p>1. 抖动调到 0，只拉"整体偏移"：0 阶上升，1 阶和 2 阶保持为 0。原因是它们只看相邻帧之间的相对运动 <code>T_i⁻¹T_{i+1}</code>，对整体刚体变换不变。</p>
+    <p>2. 只拉"每帧抖动"：2 阶反应最强。视频几何里的"闪烁 / 不一致"在相机上就表现为这种误差。</p>
+    <p>3. 只拉"速度漂移"：0 阶随时间累积变大，1 阶给出恒定信号，2 阶几乎为 0。</p>
+    <p>4. 切到"打乱"：平滑先验在 GT 自己身上就爆掉了，而匹配式损失基本不变。这就是本分支只用匹配式损失的原因。</p>
+  </div>
+</main>
+
+<script>
+(() => {
+  // ---------- SE(2) toy, mirrors docs/riemannian/figures/make_figures.py ----------
+  const wrap = a => ((a + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+
+  function mulberry32(seed) {
+    return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  }
+  function gauss(rng) { let u = 0, v = 0; while (!u) u = rng(); while (!v) v = rng();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  const randint = (rng, a, b) => a + Math.floor(rng() * (b - a + 1));
+
+  function gtTrajectory(n, sMax) {
+    const out = [];
+    for (let i = 0; i < n; i++) {
+      const s = sMax * i / (n - 1);
+      const x = 12 * s / sMax, y = 1.2 * Math.sin(2 * s);
+      const dx = 12 / sMax, dy = 2.4 * Math.cos(2 * s);
+      out.push([x, y, Math.atan2(dy, dx) + 0.2 * Math.sin(3 * s)]);
+    }
+    return out;
+  }
+
+  // Re-implementation of BaseDataset.sample_sequence (src/datasets/base_data.py)
+  function sampleSequence(n, len, rng, maxInterval, shuffle) {
+    const eff = Math.max(1, Math.min(maxInterval, n - 1));
+    let pos = Math.floor(rng() * n), dir = 1; const out = [];
+    for (let k = 0; k < len; k++) {
+      out.push(pos);
+      let nxt = pos + dir * randint(rng, 1, eff);
+      if (nxt >= n) { dir = -1; nxt = Math.max(0, pos + dir * randint(rng, 1, eff)); }
+      else if (nxt < 0) { dir = 1; nxt = Math.min(n - 1, pos + dir * randint(rng, 1, eff)); }
+      pos = nxt;
+    }
+    if (shuffle) for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; }
+    return out;
+  }
+
+  function twists(tr) {           // xi_i = Log(T_i^-1 T_{i+1}) : [omega, vx, vy]
+    const out = [];
+    for (let i = 0; i + 1 < tr.length; i++) {
+      const [x0, y0, p0] = tr[i], [x1, y1, p1] = tr[i + 1];
+      const c = Math.cos(p0), s = Math.sin(p0), dx = x1 - x0, dy = y1 - y0;
+      out.push([wrap(p1 - p0), c * dx + s * dy, -s * dx + c * dy]);
+    }
+    return out;
+  }
+  const accel = tr => { const xi = twists(tr);
+    return xi.slice(1).map((b, i) => b.map((v, k) => v - xi[i][k])); };
+  const mean = a => a.reduce((s, v) => s + v, 0) / Math.max(1, a.length);
+
+  const L0 = (p, g) => mean(p.map((q, i) => Math.abs(wrap(q[2] - g[i][2])) + Math.abs(q[0] - g[i][0]) + Math.abs(q[1] - g[i][1])));
+  const L1 = (p, g) => { const a = twists(p), b = twists(g);
+    return mean(a.map((v, i) => Math.abs(wrap(v[0] - b[i][0])) + Math.abs(v[1] - b[i][1]) + Math.abs(v[2] - b[i][2]))); };
+  const L2 = (p, g) => { const a = accel(p), b = accel(g);
+    return mean(a.map((v, i) => Math.abs(v[0] - b[i][0]) + Math.abs(v[1] - b[i][1]) + Math.abs(v[2] - b[i][2]))); };
+  const prior = tr => mean(accel(tr).map(v => Math.abs(v[0]) + Math.abs(v[1]) + Math.abs(v[2])));
+
+  function corrupt(gt, offset, jitter, drift, rng) {
+    // 1) drift: re-integrate body twists with a bias (1st-order error)
+    const xi = twists(gt); let [x, y, p] = gt[0]; let tr = [[x, y, p]];
+    const sc = 1 + 0.12 * drift, yaw = 0.02 * drift;
+    for (const [w, vx, vy] of xi) {
+      const c = Math.cos(p), s = Math.sin(p);
+      x += sc * (c * vx - s * vy); y += sc * (s * vx + c * vy); p += w + yaw; tr.push([x, y, p]);
+    }
+    // 2) global rigid offset (gauge)
+    const dp = 0.2 * offset, tx = 0.8 * offset, ty = -0.6 * offset, c = Math.cos(dp), s = Math.sin(dp);
+    tr = tr.map(([x, y, p]) => [c * x - s * y + tx, s * x + c * y + ty, p + dp]);
+    // 3) per-frame jitter
+    return tr.map(([x, y, p]) => [x + 0.12 * jitter * gauss(rng), y + 0.12 * jitter * gauss(rng), p + 0.06 * jitter * gauss(rng)]);
+  }
+
+  // ---------- state + rendering ----------
+  const FULL = gtTrajectory(200, 2 * Math.PI);
+  const MODES = [[1, false], [8, false], [8, true]];
+  const state = { offset: 0, jitter: 0.3, drift: 0, mode: 0, seed: 7 };
+  const $ = id => document.getElementById(id);
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  function drawTrajectory(tr, color, width, xs, ys, tick) {
+    const pts = tr.map(([x, y]) => `${xs(x).toFixed(1)},${ys(y).toFixed(1)}`).join(' ');
+    let s = `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linejoin="round" stroke-opacity="0.9"/>`;
+    for (const [x, y, p] of tr) {
+      s += `<line x1="${xs(x)}" y1="${ys(y)}" x2="${xs(x + tick * Math.cos(p))}" y2="${ys(y + tick * Math.sin(p))}" stroke="${color}" stroke-width="1.4"/>`;
+      s += `<circle cx="${xs(x)}" cy="${ys(y)}" r="2.2" fill="${color}"/>`;
+    }
+    return s;
+  }
+
+  function bars(el, rows, maxLog) {
+    el.innerHTML = rows.map(([name, v, color]) => {
+      const w = v <= 1e-9 ? 0 : Math.max(2, 100 * (Math.log10(v) + 3) / (maxLog + 3));
+      return `<div class="metric"><span>${name}</span><div class="bar"><div style="width:${Math.min(100, w)}%;background:${color}"></div></div><span class="val">${v.toFixed(3)}</span></div>`;
+    }).join('');
+  }
+
+  function render() {
+    const [mi, sh] = MODES[state.mode];
+    const rng = mulberry32(state.seed);
+    const idx = sampleSequence(FULL.length, 24, rng, mi, sh);
+    const gt = idx.map(i => FULL[i]);
+    const pred = corrupt(gt, state.offset, state.jitter, state.drift, mulberry32(state.seed + 1));
+
+    const all = gt.concat(pred);
+    const bx = [Math.min(...all.map(p => p[0])), Math.max(...all.map(p => p[0]))];
+    const by = [Math.min(...all.map(p => p[1])), Math.max(...all.map(p => p[1]))];
+    const diag = Math.hypot(bx[1] - bx[0], by[1] - by[0]) || 1, pad = 0.08 * diag, tick = 0.035 * diag;
+    const xmin = bx[0] - pad, xmax = bx[1] + pad, ymin = by[0] - pad, ymax = by[1] + pad;
+    const k = Math.min(620 / (xmax - xmin), 360 / (ymax - ymin));
+    const ox = (640 - k * (xmax - xmin)) / 2, oy = (380 - k * (ymax - ymin)) / 2;
+    const xs = x => ox + (x - xmin) * k, ys = y => 380 - oy - (y - ymin) * k;
+    $('plot').innerHTML = drawTrajectory(gt, css('--gt'), 3, xs, ys, tick) + drawTrajectory(pred, css('--pred'), 1.8, xs, ys, tick);
+
+    const vals = [['0 阶 位置', L0(pred, gt), css('--o0')], ['1 阶 速度', L1(pred, gt), css('--o1')], ['2 阶 加速度', L2(pred, gt), css('--o2')]];
+    const pri = [['先验(GT)', prior(gt), css('--prior')], ['先验(预测)', prior(pred), css('--prior')]];
+    const maxLog = Math.log10(Math.max(1, ...vals.map(v => v[1]), ...pri.map(v => v[1])));
+    bars($('metrics'), vals, maxLog);
+    bars($('priors'), pri, maxLog);
+
+    for (const key of ['offset', 'jitter', 'drift']) $('v-' + key).textContent = state[key].toFixed(2);
+  }
+
+  for (const key of ['offset', 'jitter', 'drift'])
+    $(key).addEventListener('input', e => { state[key] = +e.target.value; render(); });
+  $('mode').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    state.mode = +b.dataset.m;
+    for (const x of $('mode').children) x.setAttribute('aria-pressed', x === b);
+    render();
+  });
+  $('reseed').addEventListener('click', () => { state.seed = (state.seed * 16807 + 11) % 2147483647; render(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+  render();
+})();
+</script>
+</body>
+</html>

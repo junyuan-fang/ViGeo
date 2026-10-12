@@ -97,7 +97,7 @@
 
 ## 6.5 已知局限
 
-- **代码没在 torch 上跑过**（作者本地无 GPU、没装 torch）。shape 和约定是人工核对的。第一次跑请先执行 `python docs/riemannian/smoke_test.py`。
+- **torch 代码没跑过**（作者本地无 GPU、没装 torch）。但 loss 的**数学**已经用纯 Python 逐行移植并验证（[`cpu_checks/RESULTS.md`](cpu_checks/RESULTS.md)，12/12 通过）。第一次跑 torch 版请先执行 `python docs/riemannian/smoke_test.py`。
 - `so3_log` 在转角接近 180° 时不稳定。1、2 阶只处理相邻帧的小转动，不受影响；0 阶和原版有同样的局限。
 - 平移项沿用原版的 L1 + `clamp(max=100)`，保证新旧 loss 量级可比；权重未调。
 - 平移部分的"加速度"是平坦近似（第 3.3 节）。

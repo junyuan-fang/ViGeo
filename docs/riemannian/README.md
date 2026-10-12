@@ -29,7 +29,7 @@
 
 **只想快速了解**：读第 0 章和第 5 章，再打开 [`interactive.html`](interactive.html)（下载到本地后用浏览器打开，离线可用）拖一拖滑块。
 **要跑实验**：读第 0、4、6 章。
-**要定下一步做什么**：读第 7 章开头的总览表和路线图。
+**要定下一步做什么**：读第 7 章开头的总览表和路线图，以及 [`cpu_checks/RESULTS.md`](cpu_checks/RESULTS.md)（CPU 验证结果）。
 **要写论文的方法部分**：第 1–4 章全部读完。
 
 ## 文件夹结构
@@ -40,6 +40,8 @@ docs/riemannian/
 ├── 00_overview.md … 07_*.md      ← 教程正文（第 7 章 = novelty 全清单）
 ├── glossary.md                   ← 术语表
 ├── interactive.html              ← 交互演示（离线、无依赖）
+├── smoke_test.py                 ← torch 版 loss 的冒烟测试（需要 CPU 版 torch）
+├── cpu_checks/                   ← 纯 Python 验证 R0–R4，结果见 RESULTS.md：python docs/riemannian/cpu_checks/run_all.py
 └── figures/
     ├── make_figures.py           ← 生成所有图，只用 Python 标准库：python docs/riemannian/figures/make_figures.py
     ├── concept_*.svg             ← 概念示意图（第 0–3 章用）

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="450.0" y="26.0" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">最简单的弯曲空间：圆。直线距离 vs 测地线，以及 Log / Exp</text>
+<circle cx="230" cy="220" r="140" fill="none" stroke="#6b7280" stroke-width="2"/>
+<line x1="230.0" y1="80.0" x2="367.9" y2="244.3" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="230.0,80.0 236.1,80.1 242.2,80.5 248.3,81.2 254.3,82.1 260.3,83.3 266.2,84.8 272.1,86.5 277.9,88.4 283.6,90.7 289.2,93.1 294.6,95.8 300.0,98.8 305.2,101.9 310.3,105.3 315.2,108.9 320.0,112.8 324.6,116.8 329.0,121.0 333.2,125.4 337.2,130.0 341.1,134.8 344.7,139.7 348.1,144.8 351.2,150.0 354.2,155.4 356.9,160.8 359.3,166.4 361.6,172.1 363.5,177.9 365.2,183.8 366.7,189.7 367.9,195.7 368.8,201.7 369.5,207.8 369.9,213.9 370.0,220.0 369.9,226.1 369.5,232.2 368.8,238.3 367.9,244.3" fill="none" stroke="#2563eb" stroke-width="4" stroke-opacity="1.0" stroke-linejoin="round"/>
+<line x1="170.0" y1="80.0" x2="504.3" y2="80.0" stroke="#059669" stroke-width="1.5"/>
+<line x1="230.0" y1="80.0" x2="474.3" y2="80.0" stroke="#059669" stroke-width="3"/>
+<polygon points="474.3,80.0 467.5,84.1 467.5,75.9" fill="#059669"/>
+<circle cx="230.0" cy="80.0" r="6" fill="#111827"/>
+<text x="216.0" y="70.0" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">p</text>
+<circle cx="367.9" cy="244.3" r="6" fill="#111827"/>
+<text x="381.9" y="234.3" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">q</text>
+<text x="352.2" y="68.0" font-size="12" text-anchor="middle" fill="#059669" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">Log_p(q)：把弧"摊平"到切线上</text>
+<text x="270.0" y="250.0" font-size="12" text-anchor="start" fill="#d97706" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">弦（直线距离）</text>
+<text x="358.0" y="115.0" font-size="12" text-anchor="start" fill="#2563eb" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">弧 = 测地线</text>
+<text x="166.0" y="76.0" font-size="11" text-anchor="end" fill="#059669" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">切空间 T_pM</text>
+<text x="520.0" y="90.0" font-size="13" text-anchor="start" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">流形 M</text>
+<text x="520.0" y="108.0" font-size="12" text-anchor="start" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">局部看是平的、整体是弯的空间（这里是圆）</text>
+<text x="520.0" y="136.0" font-size="13" text-anchor="start" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">切空间 T_pM</text>
+<text x="520.0" y="154.0" font-size="12" text-anchor="start" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">在 p 点贴上的一条"平"的线 / 面，可以做加减</text>
+<text x="520.0" y="182.0" font-size="13" text-anchor="start" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">测地线</text>
+<text x="520.0" y="200.0" font-size="12" text-anchor="start" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">只能沿着 M 走时的最短路径（蓝色弧）</text>
+<text x="520.0" y="228.0" font-size="13" text-anchor="start" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">测地距离</text>
+<text x="520.0" y="246.0" font-size="12" text-anchor="start" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">弧长。圆上就是角度差 × 半径</text>
+<text x="520.0" y="274.0" font-size="13" text-anchor="start" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">Log_p(q)</text>
+<text x="520.0" y="292.0" font-size="12" text-anchor="start" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">从 p 看 q 在哪个方向、多远 → 切空间里的向量</text>
+<text x="520.0" y="320.0" font-size="13" text-anchor="start" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">Exp_p(v)</text>
+<text x="520.0" y="338.0" font-size="12" text-anchor="start" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">Log 的反操作：沿方向 v 走 |v| 远，落回 M 上</text>
+<text x="450.0" y="388.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">弦长 &lt; 弧长，而且两点越远差得越多。用弦长当 loss，衡量的就不是"真正走了多远"。</text>
+</svg>

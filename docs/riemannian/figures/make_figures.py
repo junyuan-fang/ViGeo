@@ -9,6 +9,11 @@ Figures:
     fig1_l1_vs_geodesic.svg   baseline quaternion L1 vs true rotation error (SO(3))
     fig2_error_orders.svg     which error type each order (0/1/2) is sensitive to (SE(2) toy)
     fig3_sampling.svg         why we match pred vs GT instead of a smoothness prior
+
+Concept figures for the tutorial chapters:
+    concept_pipeline.svg      where camera poses come from in ViGeo, old vs new loss
+    concept_circle.svg        chord vs geodesic, tangent space, Log / Exp on a circle
+    concept_curve.svg         velocity / acceleration of a discrete curve on a circle
 """
 
 import math
@@ -21,7 +26,7 @@ C_GT = '#6b7280'
 C_SERIES = ['#2563eb', '#d97706', '#059669']
 C_AXIS = '#9ca3af'
 C_TEXT = '#111827'
-FONT = 'font-family="-apple-system, Helvetica, Arial, sans-serif"'
+FONT = 'font-family="-apple-system, \'PingFang SC\', \'Noto Sans CJK SC\', \'Microsoft YaHei\', Helvetica, Arial, sans-serif"'
 
 
 # -----------------------------------------------------------------------------
@@ -38,6 +43,7 @@ class Svg:
         self.items.append(s)
 
     def text(self, x, y, s, size=12, anchor='start', color=C_TEXT, weight='normal'):
+        s = str(s).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
         self.add(f'<text x="{x:.1f}" y="{y:.1f}" font-size="{size}" text-anchor="{anchor}" '
                  f'fill="{color}" font-weight="{weight}" {FONT}>{s}</text>')
 
@@ -376,7 +382,141 @@ def fig3():
     return modes, prior_gt, match_jit, match_perfect
 
 
+# -----------------------------------------------------------------------------
+# Concept figures (tutorial)
+# -----------------------------------------------------------------------------
+
+
+def box(svg, x, y, w, h, title, sub='', color='#eef2ff', stroke='#6366f1'):
+    svg.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="{color}" stroke="{stroke}"/>')
+    svg.text(x + w / 2, y + h / 2 + (-3 if sub else 5), title, 13, 'middle', weight='bold')
+    if sub:
+        svg.text(x + w / 2, y + h / 2 + 15, sub, 11, 'middle', C_AXIS)
+
+
+def arrow(svg, x1, y1, x2, y2, color=C_AXIS, width=1.6):
+    svg.line(x1, y1, x2, y2, color, width)
+    ang = math.atan2(y2 - y1, x2 - x1)
+    a1, a2 = ang + 2.6, ang - 2.6
+    svg.add(f'<polygon points="{x2:.1f},{y2:.1f} {x2 + 8 * math.cos(a1):.1f},{y2 + 8 * math.sin(a1):.1f} '
+            f'{x2 + 8 * math.cos(a2):.1f},{y2 + 8 * math.sin(a2):.1f}" fill="{color}"/>')
+
+
+def concept_pipeline():
+    svg = Svg(940, 330)
+    svg.text(470, 26, 'ViGeo 里相机位姿从哪来，以及 loss 加在哪', 15, 'middle', weight='bold')
+    xs = [20, 200, 380, 560, 740]
+    items = [('视频帧 ×S', 'RGB [S,3,H,W]'), ('DINOv2 编码器', '帧间 attention'),
+             ('camera token', '每帧 1 个向量'), ('camera head', '2 层 MLP'), ('位姿 T_0 … T_S-1', '每帧 [t(3), q(4)]')]
+    for x, (t, sub) in zip(xs, items):
+        box(svg, x, 50, 160, 60, t, sub)
+    for x in xs[:-1]:
+        arrow(svg, x + 160, 80, x + 180, 80)
+
+    # old loss
+    box(svg, 40, 160, 400, 140, '', '', '#fff7ed', '#d97706')
+    svg.text(240, 182, '原版 camera_loss：每帧单独比较', 13, 'middle', weight='bold')
+    for k in range(5):
+        cx = 90 + k * 75
+        svg.add(f'<circle cx="{cx}" cy="225" r="7" fill="{C_SERIES[0]}"/>')
+        svg.add(f'<circle cx="{cx}" cy="262" r="7" fill="{C_GT}"/>')
+        svg.line(cx, 232, cx, 255, C_SERIES[1], 2, '3,3')
+    svg.text(60, 229, '预测', 11, 'end'); svg.text(60, 266, 'GT', 11, 'end')
+    svg.text(240, 292, '帧和帧之间互不相关；四元数当成 R⁴ 里的点', 11, 'middle', C_AXIS)
+
+    # new loss
+    box(svg, 500, 160, 400, 140, '', '', '#ecfdf5', '#059669')
+    svg.text(700, 182, '本分支：把整段位姿当成一条曲线比较', 13, 'middle', weight='bold')
+    pts_p = [(550 + k * 75, 225 + 8 * math.sin(k * 1.3)) for k in range(5)]
+    pts_g = [(550 + k * 75, 262 + 4 * math.sin(k * 0.9)) for k in range(5)]
+    svg.polyline(pts_p, C_SERIES[0], 2.5); svg.polyline(pts_g, C_GT, 2.5)
+    for x, y in pts_p:
+        svg.add(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{C_SERIES[0]}"/>')
+    for x, y in pts_g:
+        svg.add(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{C_GT}"/>')
+    svg.text(700, 292, '比位置（0 阶）、每一步怎么动（1 阶）、动法怎么变（2 阶）', 11, 'middle', C_AXIS)
+    arrow(svg, 820, 110, 700, 158, '#059669')
+    arrow(svg, 820, 110, 240, 158, '#d97706')
+    svg.save('concept_pipeline.svg')
+
+
+def concept_circle():
+    svg = Svg(900, 400)
+    svg.text(450, 26, '最简单的弯曲空间：圆。直线距离 vs 测地线，以及 Log / Exp', 15, 'middle', weight='bold')
+    cx, cy, r = 230, 220, 140
+    svg.add(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{C_GT}" stroke-width="2"/>')
+    a_p, a_q = math.radians(90), math.radians(-10)
+
+    def pt(a):
+        return cx + r * math.cos(a), cy - r * math.sin(a)
+
+    (px, py), (qx, qy) = pt(a_p), pt(a_q)
+    svg.line(px, py, qx, qy, C_SERIES[1], 2.5, '6,4')
+    arc = [pt(a_p + (a_q - a_p) * k / 40) for k in range(41)]
+    svg.polyline(arc, C_SERIES[0], 4)
+    # tangent line at p and Log_p(q)
+    L = r * abs(a_q - a_p)
+    svg.line(px - 60, py, px + L + 30, py, C_SERIES[2], 1.5)
+    arrow(svg, px, py, px + L, py, C_SERIES[2], 3)
+    for (x, y), lab, dx in [((px, py), 'p', -14), ((qx, qy), 'q', 14)]:
+        svg.add(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" fill="{C_TEXT}"/>')
+        svg.text(x + dx, y - 10, lab, 15, 'middle', weight='bold')
+    svg.text(px + L / 2, py - 12, 'Log_p(q)：把弧"摊平"到切线上', 12, 'middle', C_SERIES[2])
+    svg.text(cx + 40, cy + 30, '弦（直线距离）', 12, 'start', C_SERIES[1])
+    svg.text(cx + 128, cy - 105, '弧 = 测地线', 12, 'start', C_SERIES[0])
+    svg.text(px - 64, py - 4, '切空间 T_pM', 11, 'end', C_SERIES[2])
+
+    # right: explanation
+    x0 = 520
+    lines = [
+        ('流形 M', '局部看是平的、整体是弯的空间（这里是圆）'),
+        ('切空间 T_pM', '在 p 点贴上的一条"平"的线 / 面，可以做加减'),
+        ('测地线', '只能沿着 M 走时的最短路径（蓝色弧）'),
+        ('测地距离', '弧长。圆上就是角度差 × 半径'),
+        ('Log_p(q)', '从 p 看 q 在哪个方向、多远 → 切空间里的向量'),
+        ('Exp_p(v)', 'Log 的反操作：沿方向 v 走 |v| 远，落回 M 上'),
+    ]
+    for k, (a, b) in enumerate(lines):
+        svg.text(x0, 90 + k * 46, a, 13, 'start', weight='bold')
+        svg.text(x0, 108 + k * 46, b, 12, 'start', C_AXIS)
+    svg.text(450, 388, '弦长 < 弧长，而且两点越远差得越多。用弦长当 loss，衡量的就不是"真正走了多远"。', 12, 'middle')
+    svg.save('concept_circle.svg')
+
+
+def concept_curve():
+    svg = Svg(900, 360)
+    svg.text(450, 26, '曲线上的 0 / 1 / 2 阶：位置、速度、加速度（圆上的离散曲线）', 15, 'middle', weight='bold')
+
+    def panel(x_off, angles, title, color):
+        cx, cy, r = x_off + 200, 200, 105
+        svg.text(cx, 62, title, 13, 'middle', weight='bold')
+        svg.add(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="#e5e7eb" stroke-width="2"/>')
+        pts = [(cx + r * math.cos(a), cy - r * math.sin(a)) for a in angles]
+        svg.polyline(pts, color, 2)
+        for k, ((x, y), a) in enumerate(zip(pts, angles)):
+            svg.add(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.5" fill="{color}"/>')
+            if k + 1 < len(angles):
+                d = angles[k + 1] - a
+                L = r * d  # arc length of the step = |Log| on a circle of radius r
+                arrow(svg, x, y, x - L * math.sin(a), y - L * math.cos(a), C_SERIES[1], 1.8)
+        steps = [b - a for a, b in zip(angles[:-1], angles[1:])]
+        acc = [abs(b - a) for a, b in zip(steps[:-1], steps[1:])]
+        svg.text(cx, 330, f'平均 |加速度| = {sum(acc) / len(acc):.3f} rad/步²', 12, 'middle', C_AXIS)
+
+    smooth = [math.radians(200 - 22 * k) for k in range(8)]
+    rng = random.Random(5)
+    jitter = [math.radians(200 - 22 * k + (rng.gauss(0, 7) if 0 < k < 7 else 0)) for k in range(8)]
+    panel(20, smooth, '匀速：每一步一样大 → 加速度 ≈ 0', C_SERIES[0])
+    panel(470, jitter, '抖动：步长忽大忽小 → 加速度大', C_SERIES[2])
+    svg.text(450, 352, '圆点 = 每帧位置（0 阶）；橙色箭头 = 到下一帧的 Log，即离散速度（1 阶）；相邻箭头之差 = 加速度（2 阶）',
+             11, 'middle', C_TEXT)
+    svg.save('concept_curve.svg')
+
+
 if __name__ == '__main__':
+    concept_pipeline()
+    concept_circle()
+    concept_curve()
     fig1()
     names, losses, table = fig2()
     for (lname, _), row in zip(losses, table):

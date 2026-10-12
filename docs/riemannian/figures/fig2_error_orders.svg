@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="980" height="380" viewBox="0 0 980 380">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="490.0" y="26.0" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, Helvetica, Arial, sans-serif">Each order of the curve loss is sensitive to a different error type (SE(2) toy)</text>
-<text x="275.0" y="52.0" font-size="12" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">GT (gray) and three corrupted predictions</text>
+<text x="490.0" y="26.0" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">Each order of the curve loss is sensitive to a different error type (SE(2) toy)</text>
+<text x="275.0" y="52.0" font-size="12" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">GT (gray) and three corrupted predictions</text>
 <polyline points="57.7,190.0 76.1,173.8 94.5,158.8 113.0,146.1 131.4,136.7 149.9,131.3 168.3,130.1 186.7,133.5 205.2,141.0 223.6,152.1 242.0,166.1 260.5,181.8 278.9,198.2 297.4,213.9 315.8,227.9 334.2,239.0 352.7,246.5 371.1,249.9 389.5,248.7 408.0,243.3 426.4,233.9 444.9,221.2 463.3,206.2 481.7,190.0" fill="none" stroke="#6b7280" stroke-width="3" stroke-opacity="1.0" stroke-linejoin="round"/>
 <polyline points="71.8,205.0 88.9,186.2 106.2,168.5 123.6,153.2 141.2,141.1 159.1,132.9 177.4,129.1 196.0,129.7 214.9,134.4 234.0,142.8 253.4,154.0 272.9,166.9 292.4,180.4 311.9,193.3 331.3,204.5 350.5,212.8 369.4,217.6 387.9,218.2 406.2,214.3 424.1,206.2 441.8,194.1 459.2,178.7 476.4,161.1 493.5,142.3" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-opacity="1.0" stroke-linejoin="round"/>
 <line x1="71.8" y1="205.0" x2="81.5" y2="194.2" stroke="#2563eb" stroke-width="1.2"/>
@@ -31,45 +31,45 @@
 <line x1="416.9" y1="207.2" x2="427.8" y2="199.0" stroke="#059669" stroke-width="1.2"/>
 <line x1="470.3" y1="162.2" x2="478.4" y2="149.0" stroke="#059669" stroke-width="1.2"/>
 <line x1="60.0" y1="290.0" x2="82.0" y2="290.0" stroke="#6b7280" stroke-width="2.5"/>
-<text x="88.0" y="294.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">GT</text>
+<text x="88.0" y="294.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">GT</text>
 <line x1="60.0" y1="308.0" x2="82.0" y2="308.0" stroke="#2563eb" stroke-width="2.5"/>
-<text x="88.0" y="312.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">global offset</text>
+<text x="88.0" y="312.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">global offset</text>
 <line x1="200.0" y1="290.0" x2="222.0" y2="290.0" stroke="#d97706" stroke-width="2.5"/>
-<text x="228.0" y="294.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">per-frame jitter</text>
+<text x="228.0" y="294.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">per-frame jitter</text>
 <line x1="200.0" y1="308.0" x2="222.0" y2="308.0" stroke="#059669" stroke-width="2.5"/>
-<text x="228.0" y="312.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">velocity drift</text>
+<text x="228.0" y="312.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">velocity drift</text>
 <line x1="580.0" y1="310.0" x2="950.0" y2="310.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="580.0" y1="70.0" x2="580.0" y2="310.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="576.0" y1="310.0" x2="580.0" y2="310.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="580.0" y1="310.0" x2="950.0" y2="310.0" stroke="#eef0f3" stroke-width="1"/>
-<text x="573.0" y="314.0" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0</text>
+<text x="573.0" y="314.0" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0</text>
 <line x1="576.0" y1="200.9" x2="580.0" y2="200.9" stroke="#9ca3af" stroke-width="1"/>
 <line x1="580.0" y1="200.9" x2="950.0" y2="200.9" stroke="#eef0f3" stroke-width="1"/>
-<text x="573.0" y="204.9" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.5</text>
+<text x="573.0" y="204.9" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.5</text>
 <line x1="576.0" y1="91.8" x2="580.0" y2="91.8" stroke="#9ca3af" stroke-width="1"/>
 <line x1="580.0" y1="91.8" x2="950.0" y2="91.8" stroke="#eef0f3" stroke-width="1"/>
-<text x="573.0" y="95.8" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">1</text>
-<text transform="translate(540.0,190.0) rotate(-90)" font-size="12" text-anchor="middle" fill="#111827" font-family="-apple-system, Helvetica, Arial, sans-serif">loss / max over preds</text>
+<text x="573.0" y="95.8" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">1</text>
+<text transform="translate(540.0,190.0) rotate(-90)" font-size="12" text-anchor="middle" fill="#111827" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">loss / max over preds</text>
 <rect x="594.0" y="124.0" width="27.8" height="186.0" fill="#2563eb" fill-opacity="1.0" rx="2"/>
-<text x="607.9" y="120.0" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.883</text>
+<text x="607.9" y="120.0" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.883</text>
 <rect x="625.8" y="286.8" width="27.8" height="23.2" fill="#d97706" fill-opacity="1.0" rx="2"/>
-<text x="639.7" y="282.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.110</text>
+<text x="639.7" y="282.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.110</text>
 <rect x="657.6" y="91.8" width="27.8" height="218.2" fill="#059669" fill-opacity="1.0" rx="2"/>
-<text x="671.4" y="87.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">1.036</text>
-<text x="641.7" y="328.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0th: per-frame</text>
+<text x="671.4" y="87.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">1.036</text>
+<text x="641.7" y="328.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0th: per-frame</text>
 <rect x="717.3" y="310.0" width="27.8" height="0.0" fill="#2563eb" fill-opacity="1.0" rx="2"/>
-<text x="731.2" y="306.0" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.000</text>
+<text x="731.2" y="306.0" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.000</text>
 <rect x="749.1" y="91.8" width="27.8" height="218.2" fill="#d97706" fill-opacity="1.0" rx="2"/>
-<text x="763.0" y="87.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.160</text>
+<text x="763.0" y="87.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.160</text>
 <rect x="780.9" y="243.4" width="27.8" height="66.6" fill="#059669" fill-opacity="1.0" rx="2"/>
-<text x="794.8" y="239.4" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.049</text>
-<text x="765.0" y="328.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">1st: velocity</text>
+<text x="794.8" y="239.4" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.049</text>
+<text x="765.0" y="328.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">1st: velocity</text>
 <rect x="840.7" y="310.0" width="27.8" height="0.0" fill="#2563eb" fill-opacity="1.0" rx="2"/>
-<text x="854.6" y="306.0" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.000</text>
+<text x="854.6" y="306.0" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.000</text>
 <rect x="872.4" y="91.8" width="27.8" height="218.2" fill="#d97706" fill-opacity="1.0" rx="2"/>
-<text x="886.3" y="87.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.287</text>
+<text x="886.3" y="87.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.287</text>
 <rect x="904.2" y="307.8" width="27.8" height="2.2" fill="#059669" fill-opacity="1.0" rx="2"/>
-<text x="918.1" y="303.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.003</text>
-<text x="888.3" y="328.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">2nd: acceleration</text>
-<text x="765.0" y="360.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">raw values printed on top of bars</text>
+<text x="918.1" y="303.8" font-size="9" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.003</text>
+<text x="888.3" y="328.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">2nd: acceleration</text>
+<text x="765.0" y="360.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">raw values printed on top of bars</text>
 </svg>

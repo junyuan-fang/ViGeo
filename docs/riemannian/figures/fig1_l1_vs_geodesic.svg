@@ -1,53 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="470" viewBox="0 0 640 470">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="320.0" y="26.0" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, Helvetica, Arial, sans-serif">Baseline camera_loss (L1 on quaternion) vs. true rotation error</text>
-<text x="320.0" y="46.0" font-size="12" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">GT = 150° rotation; pred = GT perturbed by θ about 300 random axes</text>
+<text x="320.0" y="26.0" font-size="15" text-anchor="middle" fill="#111827" font-weight="bold" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">Baseline camera_loss (L1 on quaternion) vs. true rotation error</text>
+<text x="320.0" y="46.0" font-size="12" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">GT = 150° rotation; pred = GT perturbed by θ about 300 random axes</text>
 <line x1="80.0" y1="350.0" x2="600.0" y2="350.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="70.0" x2="80.0" y2="350.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="350.0" x2="80.0" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="80.0" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0</text>
+<text x="80.0" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0</text>
 <line x1="166.7" y1="350.0" x2="166.7" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="166.7" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">30</text>
+<text x="166.7" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">30</text>
 <line x1="253.3" y1="350.0" x2="253.3" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="253.3" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">60</text>
+<text x="253.3" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">60</text>
 <line x1="340.0" y1="350.0" x2="340.0" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="340.0" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">90</text>
+<text x="340.0" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">90</text>
 <line x1="426.7" y1="350.0" x2="426.7" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="426.7" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">120</text>
+<text x="426.7" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">120</text>
 <line x1="513.3" y1="350.0" x2="513.3" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="513.3" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">150</text>
+<text x="513.3" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">150</text>
 <line x1="600.0" y1="350.0" x2="600.0" y2="354.0" stroke="#9ca3af" stroke-width="1"/>
-<text x="600.0" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">180</text>
+<text x="600.0" y="366.0" font-size="11" text-anchor="middle" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">180</text>
 <line x1="76.0" y1="350.0" x2="80.0" y2="350.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="350.0" x2="600.0" y2="350.0" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="354.0" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0</text>
+<text x="73.0" y="354.0" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0</text>
 <line x1="76.0" y1="312.4" x2="80.0" y2="312.4" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="312.4" x2="600.0" y2="312.4" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="316.4" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">0.5</text>
+<text x="73.0" y="316.4" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">0.5</text>
 <line x1="76.0" y1="274.8" x2="80.0" y2="274.8" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="274.8" x2="600.0" y2="274.8" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="278.8" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">1</text>
+<text x="73.0" y="278.8" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">1</text>
 <line x1="76.0" y1="237.2" x2="80.0" y2="237.2" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="237.2" x2="600.0" y2="237.2" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="241.2" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">1.5</text>
+<text x="73.0" y="241.2" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">1.5</text>
 <line x1="76.0" y1="199.6" x2="80.0" y2="199.6" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="199.6" x2="600.0" y2="199.6" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="203.6" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">2</text>
+<text x="73.0" y="203.6" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">2</text>
 <line x1="76.0" y1="162.0" x2="80.0" y2="162.0" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="162.0" x2="600.0" y2="162.0" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="166.0" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">2.5</text>
+<text x="73.0" y="166.0" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">2.5</text>
 <line x1="76.0" y1="124.4" x2="80.0" y2="124.4" stroke="#9ca3af" stroke-width="1"/>
 <line x1="80.0" y1="124.4" x2="600.0" y2="124.4" stroke="#eef0f3" stroke-width="1"/>
-<text x="73.0" y="128.4" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">3</text>
-<text x="340.0" y="384.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">true geodesic error θ (degrees)</text>
-<text transform="translate(40.0,210.0) rotate(-90)" font-size="12" text-anchor="middle" fill="#111827" font-family="-apple-system, Helvetica, Arial, sans-serif">loss value</text>
+<text x="73.0" y="128.4" font-size="11" text-anchor="end" fill="#9ca3af" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">3</text>
+<text x="340.0" y="384.0" font-size="12" text-anchor="middle" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">true geodesic error θ (degrees)</text>
+<text transform="translate(40.0,210.0) rotate(-90)" font-size="12" text-anchor="middle" fill="#111827" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">loss value</text>
 <polygon points="80.0,350.0 88.7,346.1 97.3,342.2 106.0,338.3 114.7,334.3 123.3,330.4 132.0,326.6 140.7,322.6 149.3,318.6 158.0,314.7 166.7,311.0 175.3,87.9 184.0,88.3 192.7,85.2 201.3,85.0 210.0,84.2 218.7,83.3 227.3,86.3 236.0,83.8 244.7,90.4 253.3,85.6 262.0,84.6 270.7,85.1 279.3,85.6 288.0,86.0 296.7,91.3 305.3,89.5 314.0,91.6 322.7,92.1 331.3,93.9 340.0,98.3 348.7,97.0 357.3,95.5 366.0,99.1 374.7,100.7 383.3,102.3 392.0,103.3 400.7,103.5 409.3,103.0 418.0,103.6 426.7,106.4 435.3,105.6 444.0,106.5 452.7,108.7 461.3,108.3 470.0,110.3 478.7,110.8 487.3,111.8 496.0,114.1 504.7,117.1 513.3,117.5 522.0,118.2 530.7,120.3 539.3,123.2 548.0,124.7 556.7,126.4 565.3,129.2 574.0,130.8 582.7,134.1 591.3,136.7 600.0,138.1 600.0,226.8 591.3,227.3 582.7,225.2 574.0,228.1 565.3,224.7 556.7,227.3 548.0,228.6 539.3,231.7 530.7,236.0 522.0,231.9 513.3,234.0 504.7,230.8 496.0,242.4 487.3,244.8 478.7,244.7 470.0,254.0 461.3,252.8 452.7,259.4 444.0,262.9 435.3,265.8 426.7,265.7 418.0,272.7 409.3,274.7 400.7,275.4 392.0,274.7 383.3,272.0 374.7,274.0 366.0,275.3 357.3,279.3 348.7,281.4 340.0,282.5 331.3,279.5 322.7,285.2 314.0,287.0 305.3,293.8 296.7,295.3 288.0,298.1 279.3,298.4 270.7,302.0 262.0,305.8 253.3,307.0 244.7,310.3 236.0,310.8 227.3,310.1 218.7,315.2 210.0,315.7 201.3,316.8 192.7,318.6 184.0,320.0 175.3,322.9 166.7,325.8 158.0,327.9 149.3,330.6 140.7,332.2 132.0,335.4 123.3,337.1 114.7,340.3 106.0,342.4 97.3,344.8 88.7,347.4 80.0,350.0" fill="#d97706" fill-opacity="0.18" stroke="none"/>
 <polyline points="80.0,350.0 88.7,346.6 97.3,343.3 106.0,339.8 114.7,336.5 123.3,332.9 132.0,329.5 140.7,326.3 149.3,323.1 158.0,319.7 166.7,316.2 175.3,312.6 184.0,308.5 192.7,305.1 201.3,301.3 210.0,297.8 218.7,294.8 227.3,290.6 236.0,287.5 244.7,283.2 253.3,280.7 262.0,277.9 270.7,274.0 279.3,268.4 288.0,266.3 296.7,262.1 305.3,258.1 314.0,254.6 322.7,250.1 331.3,249.1 340.0,244.3 348.7,241.5 357.3,236.9 366.0,236.1 374.7,233.4 383.3,227.4 392.0,223.6 400.7,219.4 409.3,216.8 418.0,213.1 426.7,206.3 435.3,205.4 444.0,205.0 452.7,200.0 461.3,189.4 470.0,198.3 478.7,188.1 487.3,187.8 496.0,184.6 504.7,179.7 513.3,179.7 522.0,181.5 530.7,177.0 539.3,177.7 548.0,175.7 556.7,174.9 565.3,172.7 574.0,173.8 582.7,170.0 591.3,172.6 600.0,172.2" fill="none" stroke="#d97706" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round"/>
 <polyline points="80.0,350.0 88.7,346.1 97.3,342.1 106.0,338.2 114.7,334.2 123.3,330.3 132.0,326.4 140.7,322.4 149.3,318.5 158.0,314.6 166.7,310.6 175.3,306.7 184.0,302.7 192.7,298.8 201.3,294.9 210.0,290.9 218.7,287.0 227.3,283.1 236.0,279.1 244.7,275.2 253.3,271.2 262.0,267.3 270.7,263.4 279.3,259.4 288.0,255.5 296.7,251.6 305.3,247.6 314.0,243.7 322.7,239.7 331.3,235.8 340.0,231.9 348.7,227.9 357.3,224.0 366.0,220.1 374.7,216.1 383.3,212.2 392.0,208.2 400.7,204.3 409.3,200.4 418.0,196.4 426.7,192.5 435.3,188.6 444.0,184.6 452.7,180.7 461.3,176.7 470.0,172.8 478.7,168.9 487.3,164.9 496.0,161.0 504.7,157.1 513.3,153.1 522.0,149.2 530.7,145.2 539.3,141.3 548.0,137.4 556.7,133.4 565.3,129.5 574.0,125.6 582.7,121.6 591.3,117.7 600.0,113.7" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-opacity="1.0" stroke-linejoin="round"/>
 <line x1="90.0" y1="400.0" x2="112.0" y2="400.0" stroke="#2563eb" stroke-width="2.5"/>
-<text x="118.0" y="404.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">geodesic angle θ (rad) — geodesic_camera_loss</text>
+<text x="118.0" y="404.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">geodesic angle θ (rad) — geodesic_camera_loss</text>
 <line x1="90.0" y1="418.0" x2="112.0" y2="418.0" stroke="#d97706" stroke-width="2.5"/>
-<text x="118.0" y="422.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">quaternion L1, median over axes — camera_loss</text>
+<text x="118.0" y="422.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">quaternion L1, median over axes — camera_loss</text>
 <rect x="92.0" y="430.0" width="20.0" height="10.0" fill="#d97706" fill-opacity="0.18" rx="2"/>
-<text x="118.0" y="439.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, Helvetica, Arial, sans-serif">quaternion L1, min–max over axes</text>
+<text x="118.0" y="439.0" font-size="12" text-anchor="start" fill="#111827" font-weight="normal" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif">quaternion L1, min–max over axes</text>
 </svg>

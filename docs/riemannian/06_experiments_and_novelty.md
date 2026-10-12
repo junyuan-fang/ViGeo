@@ -1,6 +1,6 @@
 # 第 6 章 novelty 边界、实验方案、后续方向
 
-[← 上一章](05_figures_and_evidence.md) · [目录](README.md) · [术语表 →](glossary.md)
+[← 上一章](05_figures_and_evidence.md) · [目录](README.md) · [下一章：novelty 全清单 →](07_novelty_catalog.md)
 
 > 本章目标：说清楚哪些是别人做过的、哪些可能是新的；有 GPU 的合作者该跑什么实验、看什么指标；以及接下来可以往哪里深挖。
 
@@ -72,6 +72,8 @@
 
 ## 6.4 后续方向（按推荐顺序）
 
+> 这里只列相机轨迹相关的方向。**包括法向、尺度、形状空间在内的完整清单（含实现方法、风险、优先级）见 [第 7 章](07_novelty_catalog.md)。**
+
 ### ① 不训练也能做的验证（纯 CPU，最先做）
 
 在 benchmark 分支上拿到已有的预测轨迹，对它做 **SE(3) 测地样条平滑**（一种"在弯曲空间里拟合光滑曲线"的方法），看 RPE 能改善多少。
@@ -100,4 +102,4 @@
 - 平移项沿用原版的 L1 + `clamp(max=100)`，保证新旧 loss 量级可比；权重未调。
 - 平移部分的"加速度"是平坦近似（第 3.3 节）。
 
-[← 上一章](05_figures_and_evidence.md) · [目录](README.md) · [术语表 →](glossary.md)
+[← 上一章](05_figures_and_evidence.md) · [目录](README.md) · [下一章：novelty 全清单 →](07_novelty_catalog.md)

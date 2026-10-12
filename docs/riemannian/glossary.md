@@ -39,5 +39,13 @@
 | 弹性度量 / SRVF | elastic metric, square-root velocity function | 对"曲线走得快慢"不敏感的曲线距离 | 3.6、6.4 |
 | ATE | absolute trajectory error | 0 阶轨迹误差 | 6.3 |
 | RPE | relative pose error | 1 阶轨迹误差 | 6.3 |
+| 测地样条 | geodesic spline | 弯曲空间里的"光滑插值 / 拟合曲线" | 7.3 R2 |
+| Gauss–Newton（李群上） | Gauss–Newton on Lie groups | 每步在切空间解线性最小二乘，再用 Exp 更新 | 7.3 R2 |
+| 相似变换群 | Sim(3) | 旋转 + 平移 + 均匀缩放 | 7.3 R4 |
+| Umeyama 对齐 | Umeyama alignment | 两组对应点之间的最优相似变换，一次 3×3 SVD 求出 | 7.3 R4 |
+| Karcher 均值 | Karcher / Fréchet mean | 黎曼流形上的"平均"：到所有点测地距离平方和最小的点 | 7.3 R4 |
+| Kendall 形状空间 | Kendall shape space | 点集去掉位置、朝向、尺度之后剩下的"纯形状"组成的空间 | 7.4 R6 |
+| 商空间 | quotient space | 把"只差一个变换"的东西视为同一个点得到的空间 | 7.4 R6 |
+| Plücker 坐标 | Plücker coordinates | 用 (方向, 矩) 6 个数表示 3D 直线 | 7.5 R9 |
 
 [← 目录](README.md)

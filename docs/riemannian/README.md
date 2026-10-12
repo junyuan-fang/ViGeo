@@ -24,10 +24,12 @@
 | 4 | [04_vigeo_and_our_losses.md](04_vigeo_and_our_losses.md) | ViGeo 的位姿怎么来、原 loss 的问题、三个新 loss **逐行对照代码** | 第 1–3 章 |
 | 5 | [05_figures_and_evidence.md](05_figures_and_evidence.md) | 三个小实验：原 loss 会跳变、各阶分工、为什么不用平滑先验 | 第 4 章 |
 | 6 | [06_experiments_and_novelty.md](06_experiments_and_novelty.md) | novelty 边界、要跑的消融、后续方向、已知局限 | 第 4 章 |
+| 7 | [07_novelty_catalog.md](07_novelty_catalog.md) | **黎曼几何 novelty 全清单**：不只相机，还有法向、尺度、形状空间等，每条都有实现方法、风险、优先级 | 第 1–3 章 |
 | — | [glossary.md](glossary.md) | 中英术语对照 + 一句话解释，随时查 | — |
 
 **只想快速了解**：读第 0 章和第 5 章，再打开 [`interactive.html`](interactive.html)（下载到本地后用浏览器打开，离线可用）拖一拖滑块。
 **要跑实验**：读第 0、4、6 章。
+**要定下一步做什么**：读第 7 章开头的总览表和路线图。
 **要写论文的方法部分**：第 1–4 章全部读完。
 
 ## 文件夹结构
@@ -35,7 +37,7 @@
 ```
 docs/riemannian/
 ├── README.md                     ← 你在这里
-├── 00_overview.md … 06_*.md      ← 教程正文
+├── 00_overview.md … 07_*.md      ← 教程正文（第 7 章 = novelty 全清单）
 ├── glossary.md                   ← 术语表
 ├── interactive.html              ← 交互演示（离线、无依赖）
 └── figures/
